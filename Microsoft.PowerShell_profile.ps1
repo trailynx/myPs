@@ -13,6 +13,34 @@ if (Test-path ~\PowerShell\History.csv)
 {   Import-CSV ~\PowerShell\History.csv |Add-History
 }
 
+# IIS PID to app-pool
+function IisPidToAppPool
+{
+	C:\windows\system32\inetsrv\appcmd list wp
+}
+Set-Alias iispid IisPidToAppPool
+
+function Profile 
+{ 
+	notepad++ $profile 
+}
+Set-Alias pro Profile
+
+# functions for version control of ps-files
+function GitPushProfile ($Message)
+{
+	cd {$env:UserProfile}\Documents\WindowsPowerShell
+    GitPfusch($Message)
+	.$Profile
+}
+
+function KillProcess ($Name)
+{
+	#gps | where {$_.Name -eq $Name} | kill	
+	Get-Process | Where-Object {$_.Name -eq $Name} | Stop-Process	
+}
+Set-Alias killp KillProcess
+
 # To install PsGet you run this script (feel free to vet it):
 # (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 
@@ -69,6 +97,23 @@ function GitGetMyLogByDate ()
 }
 Set-Alias gitl GitGetMyLogByDate
 
+function GitGetMyRefLogByDate ()
+{
+	Param(
+	[string]$dateFrom = {Get-Date -Format dd.MM.yyyy},
+	[string]$dateTo,
+	[string]$author
+	)
+	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
+	if(-not($dateTo)) {$dateTo=$dateFrom}
+	if(-not($author)) {$author="heidegger"}
+	# "from " + $DateFrom
+	# "to "+$DateTo
+	# "a "+$author
+	git reflog --author=$author --after="$dateFrom 00:00" --before="$dateTo 23:59" --all --pretty='%cd %h %Cred %gd %Cgreen%gs'
+}
+Set-Alias gitrl GitGetMyRefLogByDate
+
 function GitLogLast ()
 {
 	
@@ -114,6 +159,7 @@ function OpenGoldegg ()
 }
 Set-Alias goldegg OpenGoldegg
 Set-Alias ge goldegg
+
 
 # Load posh-git example profile
 . 'D:\dev\Tools\posh-git\profile.example.ps1'
