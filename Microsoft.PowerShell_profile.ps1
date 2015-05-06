@@ -26,7 +26,7 @@ function Profile
 }
 Set-Alias pro Profile
 
-# functions for version control of ps-files
+# function for version control of ps-files
 function GitPushProfile ($Message)
 {
 	cd {$env:UserProfile}\Documents\WindowsPowerShell
@@ -61,6 +61,12 @@ function GitStatus
     git status
 }
 Set-Alias gits GitStatus
+
+function GitDiff
+{
+    git diff
+}
+Set-Alias gitd GitDiff
 
 function GitCommitM ($Message)
 {
@@ -102,7 +108,8 @@ function GitGetMyRefLogByDate ()
 	Param(
 	[string]$dateFrom = {Get-Date -Format dd.MM.yyyy},
 	[string]$dateTo,
-	[string]$author
+	[string]$author,
+	[string]$params
 	)
 	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
 	if(-not($dateTo)) {$dateTo=$dateFrom}
@@ -110,7 +117,7 @@ function GitGetMyRefLogByDate ()
 	# "from " + $DateFrom
 	# "to "+$DateTo
 	# "a "+$author
-	git reflog --author=$author --after="$dateFrom 00:00" --before="$dateTo 23:59" --all --pretty='%cd %h %Cred %gd %Cgreen%gs'
+	git reflog --author=$author --after="$dateFrom 00:00" --before="$dateTo 23:59" --all --pretty='%cd %h %Cred %gd %Cgreen%gs' $params
 }
 Set-Alias gitrl GitGetMyRefLogByDate
 
@@ -120,7 +127,7 @@ function GitLogLast ()
 	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
 	$DateTo= Get-Date -Format dd.MM.yyyy
 	$DateFrom= "14.8."
-	$author="peter"
+	$author="heidegger"
 	 "from " + $DateFrom
 	 "to "+$DateTo
 	 "a "+$author
@@ -153,6 +160,12 @@ function OpenServus ()
 }
 Set-Alias servus OpenServus
 
+function OpenHof ()
+{
+	Start-Process -FilePath "https://www.facebook.com/imhofinderalpenmilchzentrale"
+}
+Set-Alias hof OpenHof
+
 function OpenGoldegg ()
 {
 	Start-Process -FilePath "www.facebook.com/cafegoldegg"
@@ -167,4 +180,20 @@ Set-Alias ge goldegg
 
 # Load posh-git example profile
 . 'C:\Projects\_misc\posh-git\profile.example.ps1'
+
+$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow 
+$global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
+
+# git config --global color.status.changed "cyan normal bold" 
+# git config --global color.status.untracked "cyan normal bold"
+
+# normal
+# black
+# red
+# green
+# yellow
+# blue
+# magenta
+# cyan
+# white
 
