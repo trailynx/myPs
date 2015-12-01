@@ -41,6 +41,23 @@ function KillProcess ($Name)
 }
 Set-Alias killp KillProcess
 
+function UninstallApp ($Name)
+{
+	$app = get-wmiobject -class win32_product | where-object { 
+		$_.name -match $name
+	}
+	# $app = Get-WmiObject -Class Win32_Product `
+                     # -Filter "Name = $Name"
+	
+	$app.Uninstall()
+}
+
+function UninstallMVC2
+{
+	UninstallApp("Microsoft ASP.NET MVC 2")
+}
+Set-Alias uninstMvc2 UninstallMVC2
+
 # To install PsGet you run this script (feel free to vet it):
 # (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 
@@ -99,7 +116,7 @@ function GitGetMyLogByDate ()
 	# "from " + $DateFrom
 	# "to "+$DateTo
 	# "a "+$author
-	git log --author=$author --after="$dateFrom 00:00" --before="$dateTo 23:59" --all --reverse --pretty=format:"%ad : %-an :%Cred%d%Creset: %h : %Cgreen%B" --regexp-ignore-case
+	git log --all --author=$author --after="$dateFrom 00:00" --before="$dateTo 23:59" --pretty=format:"%ad : %-an :%Cred%d%Creset: %h : %Cgreen%B" --regexp-ignore-case
 }
 Set-Alias gitl GitGetMyLogByDate
 
