@@ -1,0 +1,38 @@
+[push]
+	default = current
+[user]
+	name = Josef Heidegger
+	email = j.heidegger@diamonddogs.cc
+[core]
+	autocrlf = true
+	excludesfile = 
+[color "status"]
+	changed = magenta normal bold
+	untracked = cyan normal bold
+[color "diff"]
+	meta = yellow bold
+    frag = cyan bold
+    old = red  bold
+    new = green bold 
+	
+[difftool "sourcetree"]
+	cmd = 'C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = 'C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe'  -base:\"$BASE\" -mine:\"$LOCAL\" -theirs:\"$REMOTE\" -merged:\"$MERGED\"
+	trustExitCode = true
+[diff]
+    tool = vsdiffmerge
+[difftool]
+    prompt = true
+[difftool "vsdiffmerge"]
+    cmd = \"vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+    keepbackup = false
+    trustexistcode = true
+[merge]
+    tool = vsdiffmerge
+[mergetool]
+    prompt = true
+[mergetool "vsdiffmerge"]
+    cmd = \"vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+    keepbackup = false
+    trustexistcode = true
