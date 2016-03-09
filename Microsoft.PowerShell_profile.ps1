@@ -188,7 +188,14 @@ function OpenGoldegg ()
 	Start-Process -FilePath "www.facebook.com/cafegoldegg"
 }
 Set-Alias goldegg OpenGoldegg
-Set-Alias ge goldegg
+
+
+function OpenSperl ()
+{
+	Start-Process -FilePath "http://www.restaurant-sperl.at/wp-content/uploads/menueplan.pdf"
+}
+Set-Alias sperl OpenSperl
+
 
 
 # Load posh-git example profile
