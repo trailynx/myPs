@@ -13,12 +13,7 @@ if (Test-path ~\PowerShell\History.csv)
 {   Import-CSV ~\PowerShell\History.csv |Add-History
 }
 
-# IIS PID to app-pool
-function IisPidToAppPool
-{
-	C:\windows\system32\inetsrv\appcmd list wp
-}
-Set-Alias iispid IisPidToAppPool
+############ profile related stuff ############
 
 function Profile 
 { 
@@ -33,6 +28,8 @@ function GitPushProfile ($Message)
     GitPfusch($Message)
 	.$Profile
 }
+
+############ windows related stuff ############
 
 function KillProcess ($Name)
 {
@@ -58,6 +55,13 @@ function UninstallMVC2
 }
 Set-Alias uninstMvc2 UninstallMVC2
 
+# IIS PID to app-pool
+function IisPidToAppPool
+{
+	C:\windows\system32\inetsrv\appcmd list wp
+}
+Set-Alias iispid IisPidToAppPool
+
 # To install PsGet you run this script (feel free to vet it):
 # (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 
@@ -66,6 +70,8 @@ if ($host.Name -eq 'ConsoleHost')
 {
     Import-Module PSReadline
 }
+
+############ git ############
 
 # set aliases for git
 function GitAddI
@@ -170,7 +176,9 @@ function GitPfusch ($Message)
 }
 Set-Alias git-pfusch GitPfusch
 
-# other useful
+
+############ other useful ############
+
 function OpenServus ()
 {
 	Start-Process -FilePath "http://servusimbiss.at.st"
@@ -196,6 +204,24 @@ function OpenSperl ()
 }
 Set-Alias sperl OpenSperl
 
+function ToLowerCopy($String)
+{
+	$String.ToLower() | clip
+}
+Set-Alias tlc ToLowerCopy
+
+function ToUpperCopy($String)
+{
+	$String.ToUpper() | clip
+}
+Set-Alias tuc ToUpperCopy
+
+
+# $excludeList = @("stuff","bin","obj*")
+# Get-ChildItem -Recurse | % {
+    # $pathParts = $_.FullName.substring($pwd.path.Length + 1).split("\");
+    # if ( ! ($excludeList | where { $pathParts -like $_ } ) ) { $_ }
+# }
 
 
 # Load posh-git example profile
