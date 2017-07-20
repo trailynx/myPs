@@ -13,6 +13,39 @@ if (Test-path ~\PowerShell\History.csv)
 {   Import-CSV ~\PowerShell\History.csv |Add-History
 }
 
+function SetBackground($bckgrnd)
+{
+    $Host.UI.RawUI.BackgroundColor = $bckgrnd
+    $Host.UI.RawUI.ForegroundColor = 'White'
+    $Host.PrivateData.ErrorForegroundColor = 'Red'
+    $Host.PrivateData.ErrorBackgroundColor = $bckgrnd
+    $Host.PrivateData.WarningForegroundColor = 'Magenta'
+    $Host.PrivateData.WarningBackgroundColor = $bckgrnd
+    $Host.PrivateData.DebugForegroundColor = 'Yellow'
+    $Host.PrivateData.DebugBackgroundColor = $bckgrnd
+    $Host.PrivateData.VerboseForegroundColor = 'Green'
+    $Host.PrivateData.VerboseBackgroundColor = $bckgrnd
+    $Host.PrivateData.ProgressForegroundColor = 'Cyan'
+    $Host.PrivateData.ProgressBackgroundColor = $bckgrnd
+    Clear-Host
+}
+
+if ($host.UI.RawUI.WindowTitle -match �Administrator�) {SetBackground("DarkRed")}
+if ($host.UI.RawUI.WindowTitle -match �Workheld-WebClient�) {SetBackground("DarkGreen")}
+
+function SetWebBackground()
+{
+    SetBackground("DarkCyan")
+}
+Set-Alias bgWeb SetWebBackground
+
+function SetStandardbackground()
+{
+    SetBackground("DarkMagenta")
+}
+Set-Alias bgStd SetStandardbackground
+
+
 ############ profile related stuff ############
 
 function Profile 
