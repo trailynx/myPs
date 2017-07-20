@@ -299,6 +299,19 @@ function CreateBatteryReport ()
 	Start-Process -FilePath $FilePath 
 }
 Set-Alias batteryReport CreateBatteryReport
+
+function WorkHeldDeleteDbs ()
+{
+	Remove-Item C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\* -include *.db
+}
+Set-Alias whrmdb WorkHeldDeleteDbs
+
+function WorkHeldPath ()
+{
+	ii C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\
+}
+Set-Alias whPath WorkHeldPath 
+
 # $excludeList = @("stuff","bin","obj*")
 # Get-ChildItem -Recurse | % {
     # $pathParts = $_.FullName.substring($pwd.path.Length + 1).split("\");
