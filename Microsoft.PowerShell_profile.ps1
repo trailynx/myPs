@@ -183,6 +183,16 @@ function GitGetMyLogByDate ()
 }
 Set-Alias gitl GitGetMyLogByDate
 
+function GitLogFilter ()
+{
+	Param([string]$filter,
+	[string]$params)
+	[Environment]::NewLine
+	git log --pretty=format:"%Creset %h - %Cgreen %s %Creset %ad : %Cred %-an" --regexp-ignore-case --grep=$filter $params
+	[Environment]::NewLine
+}
+Set-Alias gitlf GitLogFilter
+
 function GitGetMyRefLogByDate ()
 {
 	Param(
