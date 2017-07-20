@@ -284,6 +284,19 @@ function ToUpperCopy($String)
 Set-Alias tuc ToUpperCopy
 
 
+function OpenReblaus ()
+{
+	Start-Process -FilePath "http://www.zurreblaus.at/woche-aktuell.html"
+}
+Set-Alias reblaus OpenReblaus
+
+function OpenBrotzeit ()
+{
+	Start-Process -FilePath "http://www.brotzeit.at/diegourmetkantine/index.php/menueplan-brotzeit-die-gourmetkantine"
+}
+Set-Alias brotzeit OpenBrotzeit
+
+
 function CreateBatteryReport ()
 {
 	$CurrentDate = Get-Date
