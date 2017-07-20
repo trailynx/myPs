@@ -175,7 +175,7 @@ function GitGetMyLogByDate ()
 	)
 	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
 	if(-not($dateTo)) {$dateTo=$dateFrom}
-	if(-not($author)) {$author="heidegger"}
+	if(-not($author)) {$author="trailynx"}
 	# "from " + $DateFrom
 	# "to "+$DateTo
 	# "a "+$author
@@ -203,7 +203,7 @@ function GitGetMyRefLogByDate ()
 	)
 	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
 	if(-not($dateTo)) {$dateTo=$dateFrom}
-	if(-not($author)) {$author="heidegger"}
+	if(-not($author)) {$author="trailynx"}
 	# "from " + $DateFrom
 	# "to "+$DateTo
 	# "a "+$author
@@ -217,7 +217,7 @@ function GitLogLast ()
 	# if(-not($DateFrom)) {$DateFrom= Get-Date -Format dd.MM.yyyy}
 	$DateTo= Get-Date -Format dd.MM.yyyy
 	$DateFrom= "14.8."
-	$author="heidegger"
+	$author="trailynx"
 	 "from " + $DateFrom
 	 "to "+$DateTo
 	 "a "+$author
