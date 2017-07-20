@@ -284,6 +284,21 @@ function ToUpperCopy($String)
 Set-Alias tuc ToUpperCopy
 
 
+function CreateBatteryReport ()
+{
+	$CurrentDate = Get-Date
+	$CurrentDate = $CurrentDate.ToString('MM-dd-yyyy_hh-mm-ss')
+	$TargetDir = "C:\battery_reports"
+	if(!(Test-Path -Path $TargetDir ))
+	{
+    	New-Item -ItemType directory -Path $TargetDir
+	}
+	$FilePath = $TargetDir + "\battery_report_$CurrentDate.html"
+	powercfg /batteryreport /output "$FilePath "
+
+	Start-Process -FilePath $FilePath 
+}
+Set-Alias batteryReport CreateBatteryReport
 # $excludeList = @("stuff","bin","obj*")
 # Get-ChildItem -Recurse | % {
     # $pathParts = $_.FullName.substring($pwd.path.Length + 1).split("\");
