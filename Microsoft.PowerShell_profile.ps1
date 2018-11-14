@@ -420,7 +420,7 @@ Set-Alias whrmdb WorkHeldDeleteDbs
 
 function WorkHeldPath ()
 {
-	ii C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\
+	"C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\"
 }
 Set-Alias whPath WorkHeldPath 
 
