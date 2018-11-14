@@ -50,7 +50,7 @@ Set-Alias bgStd SetStandardbackground
 
 function Profile 
 { 
-	notepad++ $profile 
+	PowerShell_ISE $profile 
 }
 Set-Alias pro Profile
 
