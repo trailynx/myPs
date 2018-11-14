@@ -30,8 +30,8 @@ function SetBackground($bckgrnd)
     Clear-Host
 }
 
-if ($host.UI.RawUI.WindowTitle -match �Administrator�) {SetBackground("DarkRed")}
-if ($host.UI.RawUI.WindowTitle -match �Workheld-WebClient�) {SetBackground("DarkGreen")}
+ if ($host.UI.RawUI.WindowTitle -match "Administrator") {SetBackground("DarkRed")}
+ if ($host.UI.RawUI.WindowTitle -match "Workheld-WebClient") {SetBackground("DarkGreen")}
 
 function SetWebBackground()
 {
@@ -332,15 +332,15 @@ Set-Alias whPath WorkHeldPath
 # }
 
 
-# Load posh-git example profile
-. 'D:\dev\Tools\posh-git\profile.example.ps1'
+# # Load posh-git example profile
+# . 'D:\dev\Tools\posh-git\profile.example.ps1'
 
 
-# Load posh-git example profile
-. 'C:\Projects\_misc\posh-git\profile.example.ps1'
+# # Load posh-git example profile
+# . 'C:\Projects\_misc\posh-git\profile.example.ps1'
 
-$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow 
-$global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
+#$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow 
+# $global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
 
 # git config --global color.status.changed "cyan normal bold" 
 # git config --global color.status.untracked "cyan normal bold"
@@ -355,3 +355,13 @@ $global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
 # cyan
 # white
 
+
+# Load posh-git example profile
+. 'C:\Users\trailynx\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
+
+
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
