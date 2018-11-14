@@ -243,6 +243,97 @@ function GitPfusch ($Message)
 }
 Set-Alias git-pfusch GitPfusch
 
+function GitDeleteLocalBranches ($branches)
+{
+# function to delete multiple branches at once
+# example usage: 
+# first save all branches to textfile: "git branch --list > branches.txt"
+# then manuall edit the textfile to only contain branches you want to delete
+# read the textfile again: "$l = Get-Content branches.txt"
+# and pass it into the function: GitDeleteLocalBranches $l
+
+    write-host 'This will delete all LOCAL branches that are provided in the input parameter, press enter to procceed'
+    pause
+
+    # param([string[]]$arr)
+    Foreach($branch in $branches)
+    {
+        write-host 'deleting ' $branch
+        git branch -d $branch
+    }
+}
+
+function GitDeleteRemoteBranches ($branches)
+{
+# function to delete multiple branches at once
+# example usage: 
+# first save all branches to textfile: "git branch -r > branches-r.txt"
+# then manuall edit the textfile to only contain branches you want to delete
+# read the textfile again: "$r = Get-Content branches-r.txt"
+# and pass it into the function: GitDeleteRemoteBranches $r
+
+    write-host 'This will delete all branches REMOTE that are provided in the input parameter, press enter to procceed'
+    pause
+
+    # param([string[]]$arr)
+    Foreach($branch in $branches)
+    {
+        write-host 'deleting ' $branch
+        git branch -d $branch
+    }
+}
+
+
+
+function GitDeleteLocalBranchesInteractive ($fromFile)
+{
+    Write-host "`nThis is a method to delete several branches at once (locally, won't push). If you fuck up you can try to get them from remote again, or try to use git reflog."
+    pause
+    if($fromFile)
+    {
+        # use the provided file        
+        write-host "`nUsing provided file $fromFile with branchnames for deleting"
+
+    }
+    else
+    {    
+        write-host "`nInitializing delte list with ALL local branch names"
+        $fromFile = "branches2delete.txt"
+        git branch --list > $fromFile
+    }
+    write-host "Please edit the file with branch names to delete"
+    write-host "The ones that you leave in the file $fromFile will get deleted!! " -ForegroundColor Yellow -BackgroundColor DarkRed
+    write-host "When you are done save it and then press enter`nEach line must exactly match with the branch name to delete (no leading or trailing whitespace)`n"
+
+    ii .\$fromFile
+    
+    pause
+
+    $branches = Get-Content .\$fromFile
+
+
+    write-host "`nThis will delete all branches that are provided in the branches.txt file, `nonly press enter to procceed if you are sure that the file only contains branches you want to delete`n`n"
+    
+    
+    write-host "Branches to delete: " -ForegroundColor Yellow -BackgroundColor DarkRed
+    Foreach($branch in $branches)
+    {
+        write-host $branch -ForegroundColor Red -BackgroundColor Black
+    }
+        
+    Write-Host "`n-------------------------------------------------`nAre you really sure to delete all these branches?`n-------------------------------------------------`n" -ForegroundColor Yellow -BackgroundColor DarkRed
+
+    write-host "`nPress 'CTRL + C, CTRL + C' to exit..."
+    pause
+
+    # param([string[]]$arr)
+    Foreach($branch in $branches)
+    {
+        write-host 'deleting ' $branch
+        git branch -d $branch
+    }
+}
+
 
 ############ other useful ############
 
