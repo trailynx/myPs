@@ -404,6 +404,14 @@ function CreateBatteryReport ()
 }
 Set-Alias batteryReport CreateBatteryReport
 
+# work related stuff
+function Workheldconfig ()
+{ 
+    $workheldConfigPath = "$env:LOCALAPPDATA\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\config.json"
+    Get-Content $workheldConfigPath
+}
+Set-Alias whconfig Workheldconfig
+
 function WorkHeldDeleteDbs ()
 {
 	Remove-Item C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\* -include *.db
