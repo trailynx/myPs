@@ -128,6 +128,28 @@ if ($host.Name -eq 'ConsoleHost')
     Import-Module PSReadline
 }
 
+function ZipThisFolder
+{
+    Param(
+	[string]$destinationPath,
+	[switch]$force
+	)
+	if(-not($destinationPath))
+    {
+        $destinationPath=(Resolve-Path .\).Path
+    }
+    if($force)
+    {
+        Compress-Archive -Path * -DestinationPath $destinationPath -Force
+    }
+    else
+    {
+        Compress-Archive -Path * -DestinationPath $destinationPath
+    }
+}
+Set-Alias zipdir ZipThisFolder
+Set-Alias zipthis ZipThisFolder
+
 ############ git ############
 
 # set aliases for git
