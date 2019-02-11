@@ -456,8 +456,7 @@ Set-Alias whPath WorkHeldPath
 
 
 # Load posh-git example profile
-. 'C:\Users\trailynx\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
-
+Import-Module posh-git
 
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
