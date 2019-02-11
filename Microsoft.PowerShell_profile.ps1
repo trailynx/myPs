@@ -414,13 +414,13 @@ Set-Alias whconfig Workheldconfig
 
 function WorkHeldDeleteDbs ()
 {
-	Remove-Item C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\* -include *.db
+	Remove-Item "$env:LOCALAPPDATA\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\*" -include *.db
 }
 Set-Alias whrmdb WorkHeldDeleteDbs
 
 function WorkHeldPath ()
 {
-	"C:\Users\trailynx\AppData\Local\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\"
+	"$env:LOCALAPPDATA\Packages\TabletSolutionsGmbH.WorkHeld_3dccz84925sdp\LocalState\"
 }
 Set-Alias whPath WorkHeldPath 
 
